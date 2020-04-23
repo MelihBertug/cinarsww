@@ -1,10 +1,11 @@
 var mineflayer = require('mineflayer');
 var db = require('quick.db')
+var Base64 = require('js-base64').Base64;
 
 var ayar = {
-    host: "CrayzCraftHUBb.aternos.me", //Sunucu IPnizi giriniz.
+    host: "mcdelihub.aternos.me", //Sunucu IPnizi giriniz.
     port: 25565,                      //Sunucu portunuzu giriniz. Genellikle 25565 olarak ayarlıdır.
-    username: "BotName",             //Sunucuya giriş yapacak bot ismi.
+    username: "NixAdmin",             //Sunucuya giriş yapacak bot ismi.
     version: false                  //Burası böyle kalsın değiştirmeyin.
 };
 
@@ -14,7 +15,6 @@ var kayit = {
 }
 
 var bot = mineflayer.createBot(ayar);
-
 
 bot.on('chat', function(username, message) {
   if (username === bot.username) return;
@@ -32,7 +32,7 @@ bot.on('chat', function(username, message) {
       db.set(`giris`, 'tm')
       
       setInterval(() => {
-        bot.chat('Bu kod nix is closed#5775 tarafından, CanavarCraft ailesine armağan edilmiştir.')
+        bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
       }, 300000)
       
     }
@@ -42,7 +42,7 @@ bot.on('chat', function(username, message) {
       console.log('Bot giriş yaptı!')
       
        setInterval(() => {
-        bot.chat('Bu kod nix is closed#5775 tarafından, CanavarCraft ailesine armağan edilmiştir.')
+        bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
       }, 300000)
       
     }

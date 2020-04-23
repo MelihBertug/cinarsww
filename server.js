@@ -18,7 +18,7 @@ bot.on('chat', function async(username, message) {
   if (username === bot.username) return;
   
   setInterval(() => {
-    
+    bot.chat(`Bu kod nix is closed#5775 tarafından, CanavarCraft ailesine sunulmuştur.`)
   }, 300000)
   
   if (eklenti.authme == 'var') {

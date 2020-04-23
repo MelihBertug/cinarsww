@@ -3,7 +3,7 @@ var db = require('quick.db')
 var Base64 = require('js-base64').Base64;
 
 var ayar = {
-    host: "mcdelihub.aternos.me", //Sunucu IPnizi giriniz.
+    host: "IP.aternos.me", //Sunucu IPnizi giriniz.
     port: 25565,                      //Sunucu portunuzu giriniz. Genellikle 25565 olarak ayarlıdır.
     username: "NixAdmin",             //Sunucuya giriş yapacak bot ismi.
     version: false                  //Burası böyle kalsın değiştirmeyin.
@@ -24,12 +24,12 @@ bot.on('chat', function(username, message) {
     setInterval(intervalFunc,7000);
   
   if (kayit.authme == 'var') {
-    let giris = db.fetch('giris')
+    let giris = db.fetch(`giris_${ayar.host}_${ayar.username}`)
     if (!giris) {
       
       bot.chat(`/register ${kayit.sifre} ${kayit.sifre}`) //Kayıt olmasını sağladık.
       console.log('Bot kayıt oldu!')
-      db.set(`giris`, 'tm')
+      db.set(`giris_${ayar.host}_${ayar.username}`, 'tm')
       
       setInterval(() => {
         bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))

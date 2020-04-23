@@ -2,11 +2,11 @@ var mineflayer = require('mineflayer');
 var db = require('quick.db')
 
 var bot = mineflayer.createBot({
-  host: "IP.aternos.me", // optional
-  port: 25565,       // optional
-  username: "ADMIN", // email and password are required only for
-  password: "ADMIN",          // online-mode=true servers
-  version: false                 // false corresponds to auto version detection (that's the default), put for example "1.8.8" if you need a specific version
+  host: "play.creativeorsurvival.net",         // Buraya Aternos sunucunuzun IPsini giriniz.
+  port: 25565,                      // Buraya sunucu portunuzu giriniz.
+  username: "ADMIN",           // Buraya oyuncu ismini giriniz.
+  password: "ADMIN",          // Buraya şifreyi giriniz.
+  version: false             // Burayı ellemeyin böyle kalsın. 
 });
 
 var eklenti = {
@@ -17,9 +17,18 @@ var eklenti = {
 bot.on('chat', function async(username, message) {
   if (username === bot.username) return;
   
-  let giris = db.fetch(``)
+  setInterval(() => {
+    
+  }, 300000)
   
   if (eklenti.authme == 'var') {
+    
+    let giris = db.fetch(`giris_${eklenti.authme}`)
+    if (!giris) {
+      bot.chat(`/register ${eklenti.authme_sifre} ${eklenti.authme_sifre}`)
+      db.set(`giris_${eklenti.authme}`, 'tamamlandi')
+    }
+    
    function intervalFunc() {
     bot.setControlState('forward', true)
      }
@@ -34,7 +43,7 @@ bot.on('chat', function async(username, message) {
 });
 
 
-bot.on('error', err => console.log(err))
+//bot.on('error', err => console.log(err))
 
 
 bindEvents(bot);
@@ -42,7 +51,9 @@ function bindEvents(bot) {
 
 
     bot.on('error', function(err) {
-        console.log(`Bir hata oluştu.`);
+        if (err.code == err.code) {
+          console.log('Sunucu malesef kapalı!')
+        }
     });
 
     bot.on('end', function() {

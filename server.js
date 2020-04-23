@@ -1,79 +1,65 @@
 var mineflayer = require('mineflayer');
+
 var db = require('quick.db')
 
-var bot = mineflayer.createBot({
-  host: "play.creativeorsurvival.net",         // Buraya Aternos sunucunuzun IPsini giriniz.
-  port: 25565,                      // Buraya sunucu portunuzu giriniz.
-  username: "ADMIN",           // Buraya oyuncu ismini giriniz.
-  password: "ADMIN",          // Buraya şifreyi giriniz.
-  version: false             // Burayı ellemeyin böyle kalsın. 
-});
+var ayar = {
+    host: "crayzcrafthubb.aternos.me", //Buraya sunucu IPsini girin.
+    port: 25565,                      //Buraya sunucu portunuzu girin. Genellikle 25565 olarak ayarlıdır.
+    username: "ADMIN",               //Buraya botunuzun ismini girin.
+    version: false                  //Burayı değiştirmenize gerek yok.
+};
 
-var eklenti = {
-  authme: 'var', //Eğer sunucunuzda AuthMe eklentisi yoksa bu var yazısını yok olarak değiştirin.
-  authme_sifre: 'ADMIN', //Buraya AuthMe varsa botun giriş yapması için şifreyi girin.
+var authme = {
+  authme: 'mevcut', //Buraya mevcut değilse değil yazınız.
+  sifre: 'AUTHME_SIFRESI'
 }
 
-bot.on('chat', function async(username, message) {
+var bot = mineflayer.createBot(ayar);
+
+
+bot.on('chat', function(username, message) {
   if (username === bot.username) return;
   
-  setInterval(() => {
-    bot.chat(`Bu kod nix is closed#5775 tarafından, CanavarCraft ailesine sunulmuştur.`)
-  }, 300000)
-  
-  if (eklenti.authme == 'var') {
-    
-    let giris = db.fetch(`giris_${eklenti.authme}`)
-    if (!giris) {
-      bot.chat(`/register ${eklenti.authme_sifre} ${eklenti.authme_sifre}`)
-      db.set(`giris_${eklenti.authme}`, 'tamamlandi')
-    }
-    
-   function intervalFunc() {
+  function intervalFunc() {
     bot.setControlState('forward', true)
      }
+  
     setInterval(intervalFunc,7000);
-    
-    
-  console.log(`Bot sunucuya başarıyla giriş yaptı.`);
-    
-    
-  bot.chat(`/login ${eklenti.authme_sifre}`);
+  
+  let giris = require('giris') //Burayı kesinlikle değiştirmeyin.
+  if (!giris) {
+    bot.chat(`/register ${authme.sifre} ${authme.sifre}`)
+    console.log('Bot sunucuya başarıyla kayıt oldu!')
+    db.set('giris', 'tamamlandi')
+  }
+  if (giris == 'tamamlnadi') {
+    bot.chat(`/login ${authme.sifre}`)
+    console.log('Bot sunucuya giriş yaptı!')
   }
 });
-
-
-//bot.on('error', err => console.log(err))
-
 
 bindEvents(bot);
 function bindEvents(bot) {
 
 
     bot.on('error', function(err) {
-        if (err.code == err.code) {
-          console.log('Sunucu malesef kapalı!')
-        }
+        console.log("Bir hata oluştu!");
     });
 
     bot.on('end', function() {
-        console.log(`Bot sunucudan atıldı, tekrar giriş yapmak için çabalıyor.`);
+        console.log("Bot sunucudan atıldı!");
         setTimeout(relog, 5000);  
     });
-  
-  
-   function relog() {
-     
-        console.log(`Sunucuya tekrar bağlanmak için çalışılıyor.`);
-     
-        bot = mineflayer.createBot(bot);
+
+    function relog() {
+        console.log("Sunucuya Tekrardan Baglaniliyor...");
+        bot = mineflayer.createBot(ayar);
    bot.on('chat', function(username, message) {
   if (username === bot.username) return;
-     
-  console.log(`Bot sunucuya tekrar giriş yaptı.`);
-       
-  bot.chat(`/login ${eklenti.authme_sifre}`);
+  console.log('Bot tekrardan oyuna giriş yaptı!');
+  bot.chat('/login '+ pass);
 });
+    
         bindEvents(bot);
     }
 }

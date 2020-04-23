@@ -1,34 +1,68 @@
-// server.js
-// where your node app starts
+var mineflayer = require('mineflayer');
+var db = require('quick.db')
 
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
-const express = require("express");
-const app = express();
-
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
-
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
-
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+var bot = mineflayer.createBot({
+  host: "IP.aternos.me", // optional
+  port: 25565,       // optional
+  username: "ADMIN", // email and password are required only for
+  password: "ADMIN",          // online-mode=true servers
+  version: false                 // false corresponds to auto version detection (that's the default), put for example "1.8.8" if you need a specific version
 });
 
-// send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
+var eklenti = {
+  authme: 'var', //Eğer sunucunuzda AuthMe eklentisi yoksa bu var yazısını yok olarak değiştirin.
+  authme_sifre: 'ADMIN', //Buraya AuthMe varsa botun giriş yapması için şifreyi girin.
+}
+
+bot.on('chat', function async(username, message) {
+  if (username === bot.username) return;
+  
+  let giris = db.fetch(``)
+  
+  if (eklenti.authme == 'var') {
+   function intervalFunc() {
+    bot.setControlState('forward', true)
+     }
+    setInterval(intervalFunc,7000);
+    
+    
+  console.log(`Bot sunucuya başarıyla giriş yaptı.`);
+    
+    
+  bot.chat(`/login ${eklenti.authme_sifre}`);
+  }
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+
+bot.on('error', err => console.log(err))
+
+
+bindEvents(bot);
+function bindEvents(bot) {
+
+
+    bot.on('error', function(err) {
+        console.log(`Bir hata oluştu.`);
+    });
+
+    bot.on('end', function() {
+        console.log(`Bot sunucudan atıldı, tekrar giriş yapmak için çabalıyor.`);
+        setTimeout(relog, 5000);  
+    });
+  
+  
+   function relog() {
+     
+        console.log(`Sunucuya tekrar bağlanmak için çalışılıyor.`);
+     
+        bot = mineflayer.createBot(bot);
+   bot.on('chat', function(username, message) {
+  if (username === bot.username) return;
+     
+  console.log(`Bot sunucuya tekrar giriş yaptı.`);
+       
+  bot.chat(`/login ${eklenti.authme_sifre}`);
 });
+        bindEvents(bot);
+    }
+}

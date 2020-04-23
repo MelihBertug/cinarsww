@@ -14,6 +14,8 @@ var kayit = {
   sifre: 'ADMIN', //Buraya AuthMe varsa botun giriş yapması için şifreyi girin.
 }
 
+var automessage = true //5 Dakika'da bir sunucuda botun mesaj atmasını istemiyorsan true yazısını false olarak değiştir.
+
 var bot = mineflayer.createBot(ayar);
 
 bot.on('chat', function(username, message) {
@@ -31,9 +33,12 @@ bot.on('chat', function(username, message) {
       console.log('Bot kayıt oldu!')
       db.set(`giris_${ayar.host}_${ayar.username}`, 'tm')
       
+      
+      if (automessage == true) {
       setInterval(() => {
         bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
       }, 300000)
+      }
       
     }
     if (giris) {
@@ -41,9 +46,11 @@ bot.on('chat', function(username, message) {
       bot.chat(`/login ${kayit.sifre}`) //Giriş yapmasını sağladık.
       console.log('Bot giriş yaptı!')
       
+      if (automessage == true) {
        setInterval(() => {
         bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
       }, 300000)
+     }
       
     }
   }

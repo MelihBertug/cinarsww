@@ -37,6 +37,7 @@ bot.on('chat', function(username, message) {
       if (automessage == true) {
       setInterval(() => {
         bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
+        bot.chat(Base64.decode('TWlkbmlnaHQgRGlzY29yZCBTdW51Y3VzdTsgaHR0cHM6Ly9kaXNjb3JkLmdnL3VlWWYzc0o='))
       }, 300000)
       }
       
@@ -49,6 +50,7 @@ bot.on('chat', function(username, message) {
       if (automessage == true) {
        setInterval(() => {
         bot.chat(Base64.decode('QnUga29kIG5peCBpcyBjbG9zZWQjNTc3NSB0YXJhZsSxbmRhbiwgQ2FuYXZhckNyYWZ0IGFpbGVzaW5lIGFybWHEn2FuIGVkaWxtacWfdGlyLg=='))
+        bot.chat(Base64.decode('TWlkbmlnaHQgRGlzY29yZCBTdW51Y3VzdTsgaHR0cHM6Ly9kaXNjb3JkLmdnL3VlWWYzc0o='))
       }, 300000)
      }
       

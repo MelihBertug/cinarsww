@@ -14,7 +14,7 @@ var kayit = {
   sifre: 'ADMIN', //Buraya AuthMe varsa botun giriş yapması için şifreyi girin.
 }
 
-var automessage = true //5 Dakika'da bir sunucuda botun mesaj atmasını istemiyorsan true yazısını false olarak değiştir.
+var automessage = false //5 Dakika'da bir sunucuda botun mesaj atmasını istemiyorsan true yazısını false olarak değiştir.
 
 var bot = mineflayer.createBot(ayar);
 

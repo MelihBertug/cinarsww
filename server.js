@@ -5,7 +5,7 @@ var Base64 = require('js-base64').Base64;
 var ayar = {
     host: "melihcrusher.aternos.me", //Sunucu IPnizi giriniz.
     port: 25565,                      //Sunucu portunuzu giriniz. Genellikle 25565 olarak ayarlıdır.
-    username: "Aternos",             //Sunucuya giriş yapacak bot ismi.
+    username: "Aternos2",             //Sunucuya giriş yapacak bot ismi.
     version: false                  //Burası böyle kalsın değiştirmeyin.
 };
 

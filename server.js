@@ -3,7 +3,7 @@ var db = require('quick.db')
 var Base64 = require('js-base64').Base64;
 
 var ayar = {
-    host: "melihcrusher.aternos.me", //Sunucu IPnizi giriniz.
+    host: "Cyvus0.aternos.me", //Sunucu IPnizi giriniz.
     port: 25565,                      //Sunucu portunuzu giriniz. Genellikle 25565 olarak ayarlıdır.
     username: "MelihBots",             //Sunucuya giriş yapacak bot ismi.
     version: false                  //Burası böyle kalsın değiştirmeyin.
@@ -14,7 +14,7 @@ var kayit = {
   sifre: 'ADMIN', //Buraya AuthMe varsa botun giriş yapması için şifreyi girin.
 }
 
-var automessage = false //5 Dakika'da bir sunucuda botun mesaj atmasını istemiyorsan true yazısını false olarak değiştir.
+var automessage = true //5 Dakika'da bir sunucuda botun mesaj atmasını istemiyorsan true yazısını false olarak değiştir.
 
 var bot = mineflayer.createBot(ayar);
 
